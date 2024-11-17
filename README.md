@@ -54,22 +54,22 @@ El desarrollo se realizó utilizando tecnologías modernas como **Angular** y ba
 ### Pantallas Principales
 
 #### Crear Categoría
-![Crear Categoría](img\crear.PNG)
+![Crear Categoría](https://i.imgur.com/i1Neehe.png)
 
 #### Listar Categorías
-![Listar Categorías](img\listar.PNG)
+![Listar Categorías](https://i.imgur.com/flTmLo3.png)
 
 #### Eliminar Categoría
-![Eliminar Categoría](img\eliminar.PNG)
+![Eliminar Categoría](https://i.imgur.com/MgviWyl.png)
 
 #### Crear Cursos
-![Crear Cursos](img\crear-curso.PNG)
+![Crear Cursos](https://i.imgur.com/EblfMCk.png)
 
 #### Listar Cursos
-![Listar Cursos](img\listar-curso.PNG)
+![Listar Cursos](https://i.imgur.com/OSheGcc.png)
 
 #### Eliminar Cursos
-![Eliminar Cursos](img\eliminar-curso.PNG)
+![Eliminar Cursos](https://i.imgur.com/idzklL0.png)
 
 ---
 
