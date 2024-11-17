@@ -1,0 +1,119 @@
+<app-skeleton
+  *ngIf="coreService.isLoading"
+  [type]="SkeletonEnum.CARD"
+></app-skeleton>
+
+<p-toolbar *ngIf="!coreService.isLoading">
+  <div class="p-toolbar-group-left">
+    <app-header-form [id]="id"></app-header-form>
+  </div>
+  <div class="p-toolbar-group-right">
+    <button
+      pButton
+      pRipple
+      type="button"
+      (click)="back()"
+      [icon]="IconButtonActionEnum.CANCEL"
+      [label]="LabelButtonActionEnum.CANCEL"
+      [loading]="coreService.isLoading"
+      [ngClass]="[ClassButtonActionEnum.CANCEL]"
+    ></button>
+    <p-divider layout="vertical"></p-divider>
+    <button
+      pButton
+      pRipple
+      type="button"
+      (click)="onSubmit()"
+      [icon]="IconButtonActionEnum.SAVE"
+      [label]="LabelButtonActionEnum.SAVE"
+      [loading]="coreService.isLoading"
+      [ngClass]="[ClassButtonActionEnum.SAVE]"
+    ></button>
+  </div>
+</p-toolbar>
+
+<p-panel *ngIf="!coreService.isLoading">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="formgrid grid">
+      <!-- parent field -->
+      <div class="field xl:col-6 lg:col-6 md:col-6 sm:col-12">
+        <label appLabel for="parent" label="Parent:" [required]="parentField"></label>
+        <p-dropdown id="parent"
+                    dataKey="parent"
+                    formControlName="parent"
+                    [options]="[{label: '1', value: '1'}]"
+                    optionLabel="1"
+                    placeholder="Seleccione">
+        </p-dropdown>
+        <small appErrorMessage
+               [errors]="parentField.errors"
+               [touched]="parentField.touched"
+               [dirty]="parentField.dirty">
+        </small>
+      </div>
+
+      <!-- name field -->
+    <div class="field xl:col-6 lg:col-6 md:col-6 sm:col-12">
+      <label appLabel for="name" label="Nombre:" [required]="nameField"></label>
+      <input pInputText type="text" id="name" formControlName="name"/>
+      <small appErrorMessage
+             [errors]="nameField.errors"
+             [touched]="nameField.touched"
+             [dirty]="nameField.dirty">
+      </small>
+    </div>
+  </div>
+
+  <div class="formgrid grid">
+
+    <!-- id number field -->
+    <div class="field xl:col-6 lg:col-6 md:col-6 sm:col-12">
+      <label appLabel for="idNumber" label="Número de identificación:"></label>
+      <input pInputText type="number" id="idNumber" formControlName="idNumber"/>
+      <small appErrorMessage
+             [errors]="idNumberField.errors"
+             [touched]="idNumberField.touched"
+             [dirty]="idNumberField.dirty">
+      </small>
+    </div>
+
+    <!-- description field  -->
+    <div class="field xl:col-6 lg:col-6 md:col-6 sm:col-12">
+      <label appLabel for="description" label="Descripción:"></label>
+      <input pInputTextarea type="text" id="description" formControlName="description"/>
+      <small appErrorMessage
+             [errors]="descriptionField.errors"
+             [touched]="descriptionField.touched"
+             [dirty]="descriptionField.dirty">
+      </small>
+    </div>
+  </div>
+
+    <!-- description format field -->
+    <!-- <div class="field xl:col-12 lg:col-12 md:col-12 sm:col-12">
+      <label appLabel for="descriptionFormat" label="Formato de descripción:" [required]="descriptionFormatField"></label>
+      <p-dropdown id="descriptionFormat"
+                  dataKey="id"
+                  formControlName="descriptionFormat"
+                  optionLabel="name"
+                  placeholder="Seleccione">
+      </p-dropdown>
+      <small appErrorMessage
+             [errors]="descriptionFormatField.errors"
+             [touched]="descriptionFormatField.touched"
+             [dirty]="descriptionFormatField.dirty">
+      </small>
+    </div> -->
+
+  </form>
+</p-panel>
+
+<p-overlayPanel #opnameField>
+  <ng-template pTemplate="content">
+    <h3>Ejemplos:</h3>
+    <p-divider></p-divider>
+    <ul>
+      <li>Category - dev</li>
+    </ul>
+  </ng-template>
+</p-overlayPanel>

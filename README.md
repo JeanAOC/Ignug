@@ -100,12 +100,6 @@ Bajo la supervisión del tutor **Mauricio Tamayo**.
 - Node.js y npm instalados.
 - Angular CLI instalado.
 
-### Instalación
-1. Clonar el repositorio.
-   ```bash
-   git clone https://github.com/tu-usuario/sistema-gestion-academica.git
-
-
 # IgnugFrontend
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.7.

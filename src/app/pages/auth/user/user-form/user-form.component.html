@@ -1,0 +1,143 @@
+<app-skeleton *ngIf="coreService.isLoading" [type]="SkeletonEnum.CARD"></app-skeleton>
+
+<p-panel *ngIf="!coreService.isLoading" class="p-fluid">
+  <ng-template pTemplate="header">
+    <app-header-form [id]="id"></app-header-form>
+  </ng-template>
+
+  <p-divider></p-divider>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="field">
+      <label appLabel for="roles" label="Roles:" [required]="rolesField"></label>
+      <p-multiSelect id="roles"
+                     formControlName="roles"
+                     dataKey="id"
+                     [options]="roles"
+                     display="chip"
+                     optionLabel="name"
+                     placeholder="Seleccione...">
+        <ng-template pTemplate="selectedItem">
+          <div *ngIf="rolesField.value">
+            <div>{{rolesField.value.name}}</div>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="item" let-item>
+          {{item.name}}
+        </ng-template>
+      </p-multiSelect>
+      <small appErrorMessage
+             [errors]="rolesField.errors"
+             [touched]="rolesField.touched"
+             [dirty]="rolesField.dirty">
+      </small>
+    </div>
+    <div class="formgrid grid">
+      <div class="field xl:col-6 lg:col-6 md:col-6 sm:col-12">
+        <label appLabel for="identificationType" label="Tipo de Documento:"
+               [required]="identificationTypeField"></label>
+        <p-dropdown id="identificationType"
+                    formControlName="identificationType"
+                    dataKey="id"
+                    [options]="identificationTypes"
+                    optionLabel="name"
+                    [filter]="true"
+                    filterBy="name"
+                    placeholder="Seleccione...">
+        </p-dropdown>
+        <small appErrorMessage
+               [errors]="identificationTypeField.errors"
+               [touched]="identificationTypeField.touched"
+               [dirty]="identificationTypeField.dirty">
+        </small>
+      </div>
+      <div class="field xl:col-6 lg:col-6 md:col-6 sm:col-12">
+        <label appLabel for="identification" label="Número de Documento:" [required]="identificationField"></label>
+        <input pInputText type="text" id="identification" formControlName="identification"/>
+        <small appErrorMessage
+               [errors]="identificationField.errors"
+               [touched]="identificationField.touched"
+               [dirty]="identificationField.dirty">
+        </small>
+      </div>
+    </div>
+    <div class="formgrid grid">
+      <div class="field xl:col-6 lg:col-6 md:col-6 sm:col-12">
+        <label appLabel for="name" label="Nombres:" [required]="nameField"></label>
+        <input pInputText type="text" id="name" formControlName="name"/>
+        <small appErrorMessage
+               [errors]="nameField.errors"
+               [touched]="nameField.touched"
+               [dirty]="nameField.dirty">
+        </small>
+      </div>
+      <div class="field xl:col-6 lg:col-6 md:col-6 sm:col-12">
+        <label appLabel for="lastname" label="Apellidos:" [required]="lastnameField"></label>
+        <input pInputText type="text" id="lastname" formControlName="lastname"/>
+        <small appErrorMessage
+               [errors]="lastnameField.errors"
+               [touched]="lastnameField.touched"
+               [dirty]="lastnameField.dirty">
+        </small>
+      </div>
+    </div>
+    <div class="formgrid grid">
+      <div class="field xl:col-6 lg:col-6 md:col-6 sm:col-12">
+        <label appLabel for="username" label="Usuario:" [required]="usernameField"></label>
+        <input pInputText type="text" id="username" formControlName="username" pKeyFilter="alphanum"/>
+        <small appErrorMessage
+               [errors]="usernameField.errors"
+               [touched]="usernameField.touched"
+               [dirty]="usernameField.dirty">
+        </small>
+      </div>
+      <div class="field xl:col-6 lg:col-6 md:col-6 sm:col-12">
+        <label appLabel for="email" label="Correo Electrónico:" [required]="emailField"></label>
+        <input pInputText type="email" id="email" formControlName="email"/>
+        <small appErrorMessage
+               [errors]="emailField.errors"
+               [touched]="emailField.touched"
+               [dirty]="emailField.dirty">
+        </small>
+      </div>
+    </div>
+    <div *ngIf="id" class="field">
+      <label for="isChangePassword" class="mr-4">Cambiar Contraseña:</label>
+      <p-inputSwitch id="isChangePassword" [formControl]="isChangePassword"
+                     (onChange)="handleChangePassword($event)"></p-inputSwitch>
+    </div>
+    <div class="formgrid grid">
+      <div *ngIf="!id || isChangePassword.value" class="field xl:col-6 lg:col-6 md:col-6 sm:col-12">
+        <label appLabel for="password" label="Contraseña:" [required]="passwordField"></label>
+        <input pPassword type="password" id="password" formControlName="password" [feedback]="true"/>
+        <small appErrorMessage
+               [errors]="passwordField.errors"
+               [touched]="passwordField.touched"
+               [dirty]="passwordField.dirty">
+        </small>
+      </div>
+    </div>
+    <div *ngIf="!id || isChangePassword.value" class="field">
+      <p-checkbox id="passwordChanged" formControlName="passwordChanged"
+                  class="mt-2"
+                  [binary]="true"
+                  label="Solicitar al usuario que cambie su contraseña cuando inicie sesión"></p-checkbox>
+    </div>
+    <div class="formgrid grid">
+      <div class="field xl:col-6 lg:col-6 md:col-6 sm:col-12">
+        <button pButton pRipple id="btnBack" type="button"
+                label="Cancel"
+                class="p-button-info p-button-outlined"
+                [icon]="PrimeIcons.ARROW_LEFT"
+                [loading]="coreService.isLoading"
+                (click)="back()"></button>
+      </div>
+      <div class="field xl:col-6 lg:col-6 md:col-6 sm:col-12">
+        <button pButton pRipple id="submit" type="submit"
+                label="Save"
+                [icon]="PrimeIcons.SAVE"
+                [loading]="coreService.isLoading"></button>
+      </div>
+    </div>
+  </form>
+</p-panel>
